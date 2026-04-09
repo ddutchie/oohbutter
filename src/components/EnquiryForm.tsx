@@ -9,39 +9,41 @@ interface EnquiryFormProps {
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+const BASE_URL = "https://script.google.com/macros/s";
+
 export default function EnquiryForm({ service }: EnquiryFormProps) {
   const [status, setStatus] = useState<Status>("idle");
 
-  const formId =
+  const scriptId =
     service === "meal-prep"
-      ? process.env.NEXT_PUBLIC_FORMSPREE_MEAL_PREP
-      : process.env.NEXT_PUBLIC_FORMSPREE_EVENTS;
+      ? process.env.NEXT_PUBLIC_FORMEASY_MEALPREP
+      : process.env.NEXT_PUBLIC_FORMEASY_EVENTS;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!formId) {
-      console.error("Formspree form ID is not set.");
+    if (!scriptId) {
+      console.error("FormEasy script ID is not configured.");
       setStatus("error");
       return;
     }
 
     setStatus("submitting");
 
-    const data = new FormData(e.currentTarget);
+    const formData = new FormData(e.currentTarget);
+    const payload = Object.fromEntries(formData.entries());
 
     try {
-      const res = await fetch(`https://formspree.io/f/${formId}`, {
+      await fetch(`${BASE_URL}/${scriptId}/exec`, {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        mode: "no-cors", // Google Apps Script requires no-cors
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
-      if (res.ok) {
-        setStatus("success");
-      } else {
-        setStatus("error");
-      }
+      // no-cors means we never see the response status —
+      // if fetch didn't throw, we treat it as success
+      setStatus("success");
     } catch {
       setStatus("error");
     }
@@ -68,8 +70,7 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
       {status === "error" && (
         <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3">
           <p className="font-[family-name:var(--font-advent-pro)] text-red-700 text-sm">
-            Something went wrong — please try again or email us directly on
-            Instagram{" "}
+            Something went wrong — please try again or reach us on Instagram{" "}
             <a
               href="https://instagram.com/ooh.butter"
               className="underline"
@@ -83,6 +84,7 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
         </div>
       )}
 
+      {/* Name */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div className="flex flex-col gap-1.5">
           <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
@@ -110,6 +112,7 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
         </div>
       </div>
 
+      {/* Email */}
       <div className="flex flex-col gap-1.5">
         <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
           Email
@@ -123,6 +126,7 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
         />
       </div>
 
+      {/* Phone */}
       <div className="flex flex-col gap-1.5">
         <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
           Phone (optional)
@@ -135,6 +139,28 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
         />
       </div>
 
+      {/* Meal prep — package interest */}
+      {service === "meal-prep" && (
+        <div className="flex flex-col gap-1.5">
+          <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
+            Package Interest
+          </label>
+          <select
+            name="packageInterest"
+            required
+            defaultValue=""
+            className="border border-[#D4CFC9] rounded-lg px-4 py-3 font-[family-name:var(--font-advent-pro)] text-sm focus:outline-none focus:border-[#3D4EC6] transition-colors bg-white"
+          >
+            <option value="" disabled>Select…</option>
+            <option>Solo (1 person)</option>
+            <option>Duo (2 people)</option>
+            <option>Family (4 people)</option>
+            <option>Custom</option>
+          </select>
+        </div>
+      )}
+
+      {/* Events — event type + guest count */}
       {service === "events" && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div className="flex flex-col gap-1.5">
@@ -147,9 +173,7 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
               defaultValue=""
               className="border border-[#D4CFC9] rounded-lg px-4 py-3 font-[family-name:var(--font-advent-pro)] text-sm focus:outline-none focus:border-[#3D4EC6] transition-colors bg-white"
             >
-              <option value="" disabled>
-                Select…
-              </option>
+              <option value="" disabled>Select…</option>
               <option>Corporate Event</option>
               <option>Private Dining</option>
               <option>Product Launch</option>
@@ -172,28 +196,7 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
         </div>
       )}
 
-      {service === "meal-prep" && (
-        <div className="flex flex-col gap-1.5">
-          <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
-            Package Interest
-          </label>
-          <select
-            name="package"
-            required
-            defaultValue=""
-            className="border border-[#D4CFC9] rounded-lg px-4 py-3 font-[family-name:var(--font-advent-pro)] text-sm focus:outline-none focus:border-[#3D4EC6] transition-colors bg-white"
-          >
-            <option value="" disabled>
-              Select…
-            </option>
-            <option>Solo (1 person)</option>
-            <option>Duo (2 people)</option>
-            <option>Family (4 people)</option>
-            <option>Custom</option>
-          </select>
-        </div>
-      )}
-
+      {/* Message */}
       <div className="flex flex-col gap-1.5">
         <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
           Message
@@ -211,7 +214,9 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
         disabled={status === "submitting"}
         className="bg-[#3D4EC6] text-[#F2D06B] font-[family-name:var(--font-advent-pro)] font-700 uppercase tracking-widest text-sm px-8 py-4 rounded-full hover:bg-[#F2D06B] hover:text-[#3D4EC6] transition-colors self-start disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-2"
       >
-        {status === "submitting" && <Loader2 size={14} className="animate-spin" />}
+        {status === "submitting" && (
+          <Loader2 size={14} className="animate-spin" />
+        )}
         {status === "submitting" ? "Sending…" : "Send Enquiry"}
       </button>
     </form>
