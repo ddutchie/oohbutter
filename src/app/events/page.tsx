@@ -2,31 +2,46 @@ import EnquiryForm from "@/components/EnquiryForm";
 import Link from "next/link";
 import Image from "next/image";
 import basePath from "@/lib/basePath";
+import { Building2, UtensilsCrossed, Stars } from "lucide-react";
+import BackLink from "@/components/BackLink";
+import type { LucideIcon } from "lucide-react";
 
-const eventTypes = [
+interface EventType {
+  Icon: LucideIcon;
+  title: string;
+  description: string;
+  color: string;
+  textColor: string;
+  iconColor: string;
+}
+
+const eventTypes: EventType[] = [
   {
-    icon: "🏢",
+    Icon: Building2,
     title: "Corporate Events",
     description:
       "Team lunches, boardroom dinners, company celebrations and product launches. We make your brand look (and taste) good.",
     color: "bg-[#3D4EC6]",
     textColor: "text-white",
+    iconColor: "text-[#F2D06B]",
   },
   {
-    icon: "🕯️",
+    Icon: UtensilsCrossed,
     title: "Private Dining",
     description:
       "Intimate dinner parties, birthday celebrations and private gatherings. A bespoke menu designed around you and your guests.",
     color: "bg-[#F2D06B]",
     textColor: "text-[#3D4EC6]",
+    iconColor: "text-[#3D4EC6]",
   },
   {
-    icon: "🚀",
+    Icon: Stars,
     title: "Product Launches",
     description:
       "Make a statement. We create food experiences that complement your brand and keep guests talking long after the event.",
     color: "bg-[#6D9B7A]",
     textColor: "text-white",
+    iconColor: "text-white",
   },
 ];
 
@@ -52,15 +67,11 @@ const faqs = [
 export default function EventsPage() {
   return (
     <>
+      <BackLink variant="light" />
+
       {/* ── Hero ── */}
       <section className="bg-[#3D4EC6] py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 font-[family-name:var(--font-advent-pro)] font-600 uppercase tracking-widest text-xs text-[#F2D06B] mb-10 hover:opacity-70 transition-opacity"
-          >
-            ← Back home
-          </Link>
           <p className="font-[family-name:var(--font-advent-pro)] font-600 uppercase tracking-widest text-xs text-[#F2D06B]/60 mb-4">
             Services
           </p>
@@ -89,7 +100,7 @@ export default function EventsPage() {
                 key={evt.title}
                 className={`${evt.color} rounded-3xl p-10 flex flex-col gap-4`}
               >
-                <span className="text-4xl">{evt.icon}</span>
+                <evt.Icon size={36} className={evt.iconColor} strokeWidth={1.5} />
                 <h3
                   className={`font-[family-name:var(--font-alfa-slab)] text-2xl ${evt.textColor}`}
                 >

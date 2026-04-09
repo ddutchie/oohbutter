@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import basePath from "@/lib/basePath";
+import BackLink from "@/components/BackLink";
 
 const values = [
   {
@@ -28,15 +29,11 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      <BackLink variant="dark" />
+
       {/* ── Hero ── */}
       <section className="bg-[#FAF7F2] py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 font-[family-name:var(--font-advent-pro)] font-600 uppercase tracking-widest text-xs text-[#3D4EC6] mb-10 hover:opacity-70 transition-opacity"
-          >
-            ← Back home
-          </Link>
           <p className="font-[family-name:var(--font-advent-pro)] font-600 uppercase tracking-widest text-xs text-[#3D4EC6] mb-4">
             About us
           </p>
