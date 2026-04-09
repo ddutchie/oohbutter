@@ -1,6 +1,7 @@
 import EnquiryForm from "@/components/EnquiryForm";
 import Link from "next/link";
 import Image from "next/image";
+import basePath from "@/lib/basePath";
 
 const eventTypes = [
   {
@@ -138,7 +139,7 @@ export default function EventsPage() {
           </div>
           <div className="rounded-3xl aspect-[5/6] relative overflow-hidden">
             <Image
-              src="/images/events_editorial.jpg"
+              src={`${basePath}/images/events_editorial.jpg`}
               alt="OohButter catering in action"
               fill
               className="object-cover object-center"

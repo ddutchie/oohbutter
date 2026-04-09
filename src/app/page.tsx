@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/components/Logo";
+import basePath from "@/lib/basePath";
 
 export default function HomePage() {
   return (
@@ -79,7 +80,7 @@ export default function HomePage() {
             >
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
-                  src="/images/meal-prep-feature.jpg"
+                  src={`${basePath}/images/meal-prep-feature.jpg`}
                   alt="OohButter meal prep — fresh weekly packages"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -107,7 +108,7 @@ export default function HomePage() {
             >
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
-                  src="/images/events_feature.jpg"
+                  src={`${basePath}/images/events_feature.jpg`}
                   alt="OohButter events and catering"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -158,7 +159,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-2xl aspect-[3/4] relative overflow-hidden">
               <Image
-                src="/images/imke_portrait.jpg"
+                src={`${basePath}/images/imke_portrait.jpg`}
                 alt="Imke Bekker — chef and co-founder of OohButter"
                 fill
                 className="object-cover object-top"
@@ -167,7 +168,7 @@ export default function HomePage() {
             </div>
             <div className="rounded-2xl aspect-[3/4] relative overflow-hidden mt-8">
               <Image
-                src="/images/megan_portrait.jpg"
+                src={`${basePath}/images/megan_portrait.jpg`}
                 alt="Megan Lightfoot — chef and co-founder of OohButter"
                 fill
                 className="object-cover object-top"
