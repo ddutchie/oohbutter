@@ -38,6 +38,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Set to "true" when using a custom domain, remove basePath/assetPrefix
+          CUSTOM_DOMAIN: "false"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
