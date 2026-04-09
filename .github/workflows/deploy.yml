@@ -45,6 +45,8 @@ jobs:
           # Set to "true" when using a custom domain
           CUSTOM_DOMAIN: "false"
           NEXT_PUBLIC_CUSTOM_DOMAIN: "false"
+          NEXT_PUBLIC_FORMSPREE_MEAL_PREP: ${{ secrets.NEXT_PUBLIC_FORMSPREE_MEAL_PREP }}
+          NEXT_PUBLIC_FORMSPREE_EVENTS: ${{ secrets.NEXT_PUBLIC_FORMSPREE_EVENTS }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
