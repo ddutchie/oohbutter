@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Brand colours */
+  --color-butter:        #F2D06B;
+  --color-royal:        #3D4EC6;
+  --color-earth-green:  #6D9B7A;
+  --color-soft-blue:    #BEAF96;
+  --color-vibrant-orange: #C97B62;
+  --color-pewter-pink:  #8EB0BA;
+  --color-natural-tan:  #B5967D;
+  --color-cream:        #E8DCC8;
+  --color-warm-white:   #FAF7F2;
+  --color-stone:        #D4CFC9;
+
+  /* Typography */
+  --font-advent:  var(--font-advent-pro);
+  --font-alfa:    var(--font-alfa-slab);
+  --font-body:    var(--font-advent-pro);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: theme(--color-warm-white);
+  color: #1a1a1a;
+  font-family: var(--font-advent-pro), sans-serif;
+}
