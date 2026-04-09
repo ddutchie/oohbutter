@@ -160,40 +160,54 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
         </div>
       )}
 
-      {/* Events — event type + guest count */}
+      {/* Events — event type + guest count + date */}
       {service === "events" && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
-              Event Type
-            </label>
-            <select
-              name="eventType"
-              required
-              defaultValue=""
-              className="border border-[#D4CFC9] rounded-lg px-4 py-3 font-[family-name:var(--font-advent-pro)] text-sm focus:outline-none focus:border-[#3D4EC6] transition-colors bg-white"
-            >
-              <option value="" disabled>Select…</option>
-              <option>Corporate Event</option>
-              <option>Private Dining</option>
-              <option>Product Launch</option>
-              <option>Birthday / Celebration</option>
-              <option>Other</option>
-            </select>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="flex flex-col gap-1.5">
+              <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
+                Event Type
+              </label>
+              <select
+                name="eventType"
+                required
+                defaultValue=""
+                className="border border-[#D4CFC9] rounded-lg px-4 py-3 font-[family-name:var(--font-advent-pro)] text-sm focus:outline-none focus:border-[#3D4EC6] transition-colors bg-white"
+              >
+                <option value="" disabled>Select…</option>
+                <option>Corporate Event</option>
+                <option>Private Dining</option>
+                <option>Product Launch</option>
+                <option>Birthday / Celebration</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
+                Guest Count
+              </label>
+              <input
+                type="number"
+                name="guestCount"
+                min="1"
+                placeholder="e.g. 40"
+                className="border border-[#D4CFC9] rounded-lg px-4 py-3 font-[family-name:var(--font-advent-pro)] text-sm focus:outline-none focus:border-[#3D4EC6] transition-colors"
+              />
+            </div>
           </div>
           <div className="flex flex-col gap-1.5">
             <label className="font-[family-name:var(--font-advent-pro)] font-600 text-xs uppercase tracking-widest text-[#1a1a1a]/60">
-              Guest Count
+              Event Date
             </label>
             <input
-              type="number"
-              name="guestCount"
-              min="1"
-              placeholder="e.g. 40"
+              type="date"
+              name="requiredDate"
+              required
+              min={new Date().toISOString().split("T")[0]}
               className="border border-[#D4CFC9] rounded-lg px-4 py-3 font-[family-name:var(--font-advent-pro)] text-sm focus:outline-none focus:border-[#3D4EC6] transition-colors"
             />
           </div>
-        </div>
+        </>
       )}
 
       {/* Message */}
