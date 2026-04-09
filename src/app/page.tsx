@@ -143,9 +143,9 @@ export default function HomePage() {
               Imke & Megan
             </h2>
             <p className="font-[family-name:var(--font-advent-pro)] text-[#1a1a1a] text-lg leading-relaxed mb-8 max-w-md">
-              We&apos;re Imke Bekker and Megan Lightfoot — two chefs who believe
-              food should be delicious, honest, and a little bit indulgent.
-              OohButter is our way of sharing that belief with Toronto.
+              Founded by Imke Bekker and brought to life with Sous Chef Megan
+              Lightfoot — OohButter is a small team that believes food should
+              be delicious, honest, and a little bit indulgent.
             </p>
             <Link
               href="/about"
