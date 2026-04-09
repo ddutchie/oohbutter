@@ -80,7 +80,7 @@ export default function HomePage() {
             >
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
-                  src={`${basePath}/images/meal-prep-feature.jpg`}
+                  src={`${basePath}/images/optimised/meal-prep-feature.webp`}
                   alt="OohButter meal prep — fresh weekly packages"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -108,7 +108,7 @@ export default function HomePage() {
             >
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
-                  src={`${basePath}/images/events_feature.jpg`}
+                  src={`${basePath}/images/optimised/events_feature.webp`}
                   alt="OohButter events and catering"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -159,8 +159,8 @@ export default function HomePage() {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-2xl aspect-[3/4] relative overflow-hidden">
               <Image
-                src={`${basePath}/images/imke_portrait.jpg`}
-                alt="Imke Bekker — chef and co-founder of OohButter"
+                src={`${basePath}/images/optimised/imke_portrait.webp`}
+                  alt="Imke Bekker — chef and co-founder of OohButter"
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 50vw, 25vw"
@@ -168,8 +168,8 @@ export default function HomePage() {
             </div>
             <div className="rounded-2xl aspect-[3/4] relative overflow-hidden mt-8">
               <Image
-                src={`${basePath}/images/megan_portrait.jpg`}
-                alt="Megan Lightfoot — chef and co-founder of OohButter"
+                src={`${basePath}/images/optimised/megan_portrait.webp`}
+                  alt="Megan Lightfoot — chef and co-founder of OohButter"
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 50vw, 25vw"

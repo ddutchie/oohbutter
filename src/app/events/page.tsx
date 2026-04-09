@@ -139,7 +139,7 @@ export default function EventsPage() {
           </div>
           <div className="rounded-3xl aspect-[5/6] relative overflow-hidden">
             <Image
-              src={`${basePath}/images/events_editorial.jpg`}
+              src={`${basePath}/images/optimised/events_editorial.webp`}
               alt="OohButter catering in action"
               fill
               className="object-cover object-center"

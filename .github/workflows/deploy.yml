@@ -36,6 +36,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Optimise images
+        run: npm run optimise-images
+
       - name: Build
         run: npm run build
         env:

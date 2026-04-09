@@ -58,7 +58,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="rounded-3xl aspect-[4/5] relative overflow-hidden">
               <Image
-                src={`${basePath}/images/imke_portrait.jpg`}
+                src={`${basePath}/images/optimised/imke_portrait.webp`}
                 alt="Imke Bekker — chef and co-founder of OohButter"
                 fill
                 className="object-cover object-top"
@@ -90,7 +90,7 @@ export default function AboutPage() {
             <div className="md:order-2">
               <div className="rounded-3xl aspect-[4/5] relative overflow-hidden">
                 <Image
-                  src={`${basePath}/images/megan_portrait.jpg`}
+                  src={`${basePath}/images/optimised/megan_portrait.webp`}
                   alt="Megan Lightfoot — chef and co-founder of OohButter"
                   fill
                   className="object-cover object-top"
