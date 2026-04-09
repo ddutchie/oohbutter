@@ -34,17 +34,22 @@ export default function EnquiryForm({ service }: EnquiryFormProps) {
     const payload = Object.fromEntries(formData.entries());
 
     try {
-      await fetch(`${BASE_URL}/${scriptId}/exec`, {
+      const res = await fetch(`${BASE_URL}/${scriptId}/exec`, {
         method: "POST",
-        mode: "no-cors", // Google Apps Script requires no-cors
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload),
       });
 
-      // no-cors means we never see the response status —
-      // if fetch didn't throw, we treat it as success
-      setStatus("success");
-    } catch {
+      const data = await res.json();
+
+      if (data.result === "success") {
+        setStatus("success");
+      } else {
+        console.error("FormEasy error:", data);
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error("Form submission error:", err);
       setStatus("error");
     }
   }
